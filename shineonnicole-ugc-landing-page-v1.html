@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — UGC Creator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      color: #f0ece4;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 0.5px solid rgba(240,236,228,0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f0ece4;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(240,236,228,0.55);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #f0ece4; }
+
+    /* HERO */
+    .hero {
+      padding: 5rem 2.5rem 4rem;
+      border-bottom: 0.5px solid rgba(240,236,228,0.1);
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(240,236,228,0.4);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 58px;
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+      color: #f0ece4;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: rgba(240,236,228,0.6);
+    }
+
+    .hero p {
+      font-size: 13px;
+      line-height: 1.8;
+      color: rgba(240,236,228,0.5);
+      max-width: 420px;
+      letter-spacing: 0.04em;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 2.5rem;
+      padding: 0.75rem 2rem;
+      border: 0.5px solid rgba(240,236,228,0.4);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #f0ece4;
+      text-decoration: none;
+      transition: background 0.2s;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .btn:hover { background: rgba(240,236,228,0.08); }
+
+    /* SECTIONS */
+    section {
+      padding: 3.5rem 2.5rem;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(240,236,228,0.35);
+      margin-bottom: 2rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 0.5px solid rgba(240,236,228,0.1);
+    }
+
+    /* VIDEO GRID */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .video-wrap {}
+
+    .video-frame {
+      border: 0.5px solid rgba(240,236,228,0.2);
+      aspect-ratio: 9 / 16;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    /* Replace .placeholder with an actual <iframe> or <video> tag when ready */
+    .placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .placeholder-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      color: rgba(240,236,228,0.1);
+    }
+
+    .placeholder-tag {
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(240,236,228,0.2);
+    }
+
+    .frame-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(240,236,228,0.04);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-frame:hover .frame-overlay { opacity: 1; }
+
+    .play-btn {
+      width: 44px;
+      height: 44px;
+      border: 0.5px solid rgba(240,236,228,0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: #f0ece4;
+      margin-left: 3px;
+    }
+
+    .video-caption {
+      padding: 0.6rem 0 0;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: rgba(240,236,228,0.4);
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .service-card {
+      border: 0.5px solid rgba(240,236,228,0.15);
+      padding: 1.5rem;
+    }
+
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 300;
+      margin-bottom: 0.6rem;
+      color: #f0ece4;
+    }
+
+    .service-card p {
+      font-size: 11px;
+      line-height: 1.7;
+      color: rgba(240,236,228,0.4);
+      letter-spacing: 0.04em;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      padding: 3.5rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 0.5px solid rgba(240,236,228,0.1);
+    }
+
+    .contact-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(240,236,228,0.7);
+      margin-bottom: 1rem;
+    }
+
+    .contact-section .email {
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      color: rgba(240,236,228,0.5);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 1.5rem 2.5rem;
+      border-top: 0.5px solid rgba(240,236,228,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: rgba(240,236,228,0.2);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    .social-links a {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(240,236,228,0.25);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .social-links a:hover { color: rgba(240,236,228,0.6); }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      .hero h1 { font-size: 36px; }
+      .video-grid, .services-grid { grid-template-columns: 1fr; }
+      .contact-section { flex-direction: column; align-items: flex-start; gap: 2rem; }
+      nav { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-logo">Your Name</span>
+    <ul class="nav-links">
+      <li><a href="#portfolio">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="eyebrow">UGC Creator · Content Studio</p>
+    <h1>Content that<br><em>converts.</em></h1>
+    <p>Authentic, scroll-stopping video content for brands that want to connect with real audiences — not look like ads.</p>
+    <a href="#contact" class="btn">Work with me</a>
+  </div>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <p class="section-label">Portfolio</p>
+    <div class="video-grid">
+
+      <div class="video-wrap">
+        <div class="video-frame">
+          <!-- REPLACE this div with your video embed, e.g.:
+               YouTube: <iframe width="100%" height="100%" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+               OR self-hosted: <video src="your-video.mp4" controls style="width:100%;height:100%;object-fit:cover;"></video>
+          -->
+          <div class="placeholder">
+            <span class="placeholder-num">01</span>
+            <span class="placeholder-tag">Your video here</span>
+          </div>
+          <div class="frame-overlay">
+            <div class="play-btn">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3 2l11 6-11 6z"/></svg>
+            </div>
+          </div>
+        </div>
+        <p class="video-caption">Product Review</p>
+      </div>
+
+      <div class="video-wrap">
+        <div class="video-frame">
+          <div class="placeholder">
+            <span class="placeholder-num">02</span>
+            <span class="placeholder-tag">Your video here</span>
+          </div>
+          <div class="frame-overlay">
+            <div class="play-btn">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3 2l11 6-11 6z"/></svg>
+            </div>
+          </div>
+        </div>
+        <p class="video-caption">Lifestyle / Unboxing</p>
+      </div>
+
+      <div class="video-wrap">
+        <div class="video-frame">
+          <div class="placeholder">
+            <span class="placeholder-num">03</span>
+            <span class="placeholder-tag">Your video here</span>
+          </div>
+          <div class="frame-overlay">
+            <div class="play-btn">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3 2l11 6-11 6z"/></svg>
+            </div>
+          </div>
+        </div>
+        <p class="video-caption">Testimonial Style</p>
+      </div>
+
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-label">What I offer</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Product Reviews</h3>
+        <p>Authentic first-person reviews that build trust and drive purchase decisions.</p>
+      </div>
+      <div class="service-card">
+        <h3>Unboxing &amp; Demos</h3>
+        <p>Engaging reveal and demonstration videos optimized for short-form platforms.</p>
+      </div>
+      <div class="service-card">
+        <h3>Lifestyle Integration</h3>
+        <p>Your product woven naturally into real, relatable everyday moments.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="contact-section" id="contact">
+    <div>
+      <h2>Let's make something.</h2>
+      <p class="email">hello@youremail.com</p>
+    </div>
+    <a href="mailto:hello@youremail.com" class="btn">Get in touch</a>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2026 Your Name. All rights reserved.</span>
+    <div class="social-links">
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+    </div>
+  </footer>
+
+</body>
+</html>
