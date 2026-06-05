@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name — UGC Creator</title>
+  <title>Nicole Ciepiela — UGC Creator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -57,7 +57,57 @@
     .hero {
       padding: 5rem 2.5rem 4rem;
       border-bottom: 0.5px solid rgba(240,236,228,0.1);
+      display: flex;
+      align-items: center;
+      gap: 3.5rem;
     }
+
+    .hero-photo {
+      flex-shrink: 0;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(240,236,228,0.2);
+      background: #181818;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      gap: 10px;
+    }
+
+    /* When you're ready to add your photo, replace the .photo-placeholder div
+       with an <img> tag like this:
+       <img src="nicole.jpg" alt="Nicole Ciepiela" style="width:100%;height:100%;object-fit:cover;" />
+       Make sure your photo file is uploaded to your GitHub repo alongside index.html */
+    .photo-placeholder-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(240,236,228,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-placeholder-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: rgba(240,236,228,0.2);
+      fill: none;
+    }
+
+    .photo-placeholder-text {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(240,236,228,0.2);
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .hero-text { flex: 1; }
 
     .eyebrow {
       font-size: 10px;
@@ -86,7 +136,7 @@
       font-size: 13px;
       line-height: 1.8;
       color: rgba(240,236,228,0.5);
-      max-width: 420px;
+      max-width: 460px;
       letter-spacing: 0.04em;
     }
 
@@ -134,8 +184,6 @@
       gap: 16px;
     }
 
-    .video-wrap {}
-
     .video-frame {
       border: 0.5px solid rgba(240,236,228,0.2);
       aspect-ratio: 9 / 16;
@@ -148,7 +196,6 @@
       cursor: pointer;
     }
 
-    /* Replace .placeholder with an actual <iframe> or <video> tag when ready */
     .placeholder {
       display: flex;
       flex-direction: column;
@@ -274,11 +321,6 @@
       color: rgba(240,236,228,0.2);
     }
 
-    .social-links {
-      display: flex;
-      gap: 1.2rem;
-    }
-
     .social-links a {
       font-size: 10px;
       letter-spacing: 0.15em;
@@ -292,17 +334,20 @@
 
     /* RESPONSIVE */
     @media (max-width: 680px) {
+      .hero { flex-direction: column; align-items: flex-start; padding: 3rem 1.5rem; }
+      .hero-photo { width: 160px; height: 160px; }
       .hero h1 { font-size: 36px; }
       .video-grid, .services-grid { grid-template-columns: 1fr; }
       .contact-section { flex-direction: column; align-items: flex-start; gap: 2rem; }
       nav { flex-direction: column; gap: 1rem; }
+      section { padding: 2.5rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <span class="nav-logo">Your Name</span>
+    <span class="nav-logo">Nicole Ciepiela &nbsp;·&nbsp; <span style="font-size:15px;opacity:0.55;">@shineonnicole</span></span>
     <ul class="nav-links">
       <li><a href="#portfolio">Work</a></li>
       <li><a href="#services">Services</a></li>
@@ -312,10 +357,31 @@
 
   <!-- HERO -->
   <div class="hero">
-    <p class="eyebrow">UGC Creator · Content Studio</p>
-    <h1>Content that<br><em>converts.</em></h1>
-    <p>Authentic, scroll-stopping video content for brands that want to connect with real audiences — not look like ads.</p>
-    <a href="#contact" class="btn">Work with me</a>
+
+    <!-- PHOTO CIRCLE -->
+    <div class="hero-photo">
+      <!--
+        HOW TO ADD YOUR PHOTO:
+        1. Upload your photo to your GitHub repo (same folder as index.html)
+        2. Delete the entire .photo-placeholder-icon div and .photo-placeholder-text paragraph below
+        3. Replace them with:
+           <img src="your-photo-filename.jpg" alt="Nicole Ciepiela" style="width:100%;height:100%;object-fit:cover;" />
+      -->
+      <div class="photo-placeholder-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+      </div>
+      <p class="photo-placeholder-text">Your photo here</p>
+    </div>
+
+    <div class="hero-text">
+      <p class="eyebrow">UGC Creator · Content Studio</p>
+      <h1>Content that<br><em>converts.</em></h1>
+      <p>Content that feels like a friend tipping you off — not a brand talking at you. I create naturally delivered, camera-close video that pulls audiences in and moves them to act.</p>
+      <a href="#contact" class="btn">Work with me</a>
+    </div>
+
   </div>
 
   <!-- PORTFOLIO -->
@@ -323,11 +389,16 @@
     <p class="section-label">Portfolio</p>
     <div class="video-grid">
 
-      <div class="video-wrap">
+      <div>
         <div class="video-frame">
-          <!-- REPLACE this div with your video embed, e.g.:
-               YouTube: <iframe width="100%" height="100%" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
-               OR self-hosted: <video src="your-video.mp4" controls style="width:100%;height:100%;object-fit:cover;"></video>
+          <!--
+            TO EMBED A YOUTUBE VIDEO:
+            Replace everything inside this video-frame div (except frame-overlay) with:
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+              frameborder="0" allowfullscreen style="position:absolute;inset:0;"></iframe>
+
+            TO USE A SELF-HOSTED VIDEO:
+            <video src="your-video.mp4" controls style="width:100%;height:100%;object-fit:cover;"></video>
           -->
           <div class="placeholder">
             <span class="placeholder-num">01</span>
@@ -335,14 +406,14 @@
           </div>
           <div class="frame-overlay">
             <div class="play-btn">
-              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3 2l11 6-11 6z"/></svg>
+              <svg viewBox="0 0 16 16"><path d="M3 2l11 6-11 6z"/></svg>
             </div>
           </div>
         </div>
         <p class="video-caption">Product Review</p>
       </div>
 
-      <div class="video-wrap">
+      <div>
         <div class="video-frame">
           <div class="placeholder">
             <span class="placeholder-num">02</span>
@@ -350,14 +421,14 @@
           </div>
           <div class="frame-overlay">
             <div class="play-btn">
-              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3 2l11 6-11 6z"/></svg>
+              <svg viewBox="0 0 16 16"><path d="M3 2l11 6-11 6z"/></svg>
             </div>
           </div>
         </div>
         <p class="video-caption">Lifestyle / Unboxing</p>
       </div>
 
-      <div class="video-wrap">
+      <div>
         <div class="video-frame">
           <div class="placeholder">
             <span class="placeholder-num">03</span>
@@ -365,7 +436,7 @@
           </div>
           <div class="frame-overlay">
             <div class="play-btn">
-              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3 2l11 6-11 6z"/></svg>
+              <svg viewBox="0 0 16 16"><path d="M3 2l11 6-11 6z"/></svg>
             </div>
           </div>
         </div>
@@ -400,16 +471,15 @@
   <div class="contact-section" id="contact">
     <div>
       <h2>Let's make something.</h2>
-      <p class="email">hello@youremail.com</p>
+      <p class="email">hello@shineonnicole.com</p>
     </div>
-    <a href="mailto:hello@youremail.com" class="btn">Get in touch</a>
+    <a href="mailto:hello@shineonnicole.com" class="btn">Get in touch</a>
   </div>
 
   <footer>
-    <span class="footer-copy">© 2026 Your Name. All rights reserved.</span>
+    <span class="footer-copy">© 2026 Nicole Ciepiela. All rights reserved.</span>
     <div class="social-links">
-      <a href="#">Instagram</a>
-      <a href="#">TikTok</a>
+      <a href="https://www.instagram.com/shineonnicole?utm_source=qr" target="_blank" rel="noopener">Instagram</a>
     </div>
   </footer>
 
