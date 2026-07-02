@@ -349,15 +349,6 @@
 
       <div>
         <div class="video-frame">
-          <!--
-            TO EMBED A YOUTUBE VIDEO:
-            Replace everything inside this video-frame div (except frame-overlay) with:
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-              frameborder="0" allowfullscreen style="position:absolute;inset:0;"></iframe>
-
-            TO USE A SELF-HOSTED VIDEO:
-            <video src="your-video.mp4" controls style="width:100%;height:100%;object-fit:cover;"></video>
-          -->
           <div class="placeholder">
             <span class="placeholder-num">01</span>
             <span class="placeholder-tag">Your video here</span>
@@ -388,17 +379,14 @@
 
       <div>
         <div class="video-frame">
-          <div class="placeholder">
-            <span class="placeholder-num">03</span>
-            <span class="placeholder-tag">Your video here</span>
-          </div>
-          <div class="frame-overlay">
-            <div class="play-btn">
-              <svg viewBox="0 0 16 16"><path d="M3 2l11 6-11 6z"/></svg>
-            </div>
-          </div>
+          <iframe
+            src="https://www.youtube.com/embed/0X6V79p8JP4"
+            frameborder="0"
+            allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;">
+          </iframe>
         </div>
-        <p class="video-caption">Testimonial Style</p>
+        <p class="video-caption">Brand Collab</p>
       </div>
 
     </div>
